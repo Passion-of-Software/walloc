@@ -1,11 +1,9 @@
-#define _WALLOC_WASM
-
 #ifndef _H_WALLOC
-    #include "walloc_cfg.h"
+    #include "woralloc_cfg.h"
 
     #define _H_WALLOC
 
-    #ifdef _WALLOC_WASM
+    #ifdef _WORALLOC_WASM
         #define NULL 0
     #else
         #include <stdio.h>
