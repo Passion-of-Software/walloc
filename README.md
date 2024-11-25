@@ -15,7 +15,7 @@ Allocates the number of bytes in `size`, without initializing them,
 and returns a pointer to the start of the memory. If `size` is 0 or less,
 NULL is returned.
 
-### `wree`
+### `woree`
 
 Definition: `void woree(void *ptr)`
 
