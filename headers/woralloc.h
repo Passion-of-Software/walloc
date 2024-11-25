@@ -11,11 +11,11 @@
         void wemdump();
     #endif
 
-    void *walloc(int n);
+    void *woralloc(int n);
 
-    void wree(void *ptr);
+    void woree(void *ptr);
 
-    void *wcalloc(int nmemb, int size);
+    void *worcalloc(int nmemb, int size);
 
-    void *wrealloc(void *ptr, int size);
+    void *worealloc(void *ptr, int size);
 #endif

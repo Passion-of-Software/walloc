@@ -1,5 +1,7 @@
 # The Worst Allocator
 
+## This project is not production-ready.
+
 Woralloc is a memory allocator for use in WebAssembly applications. It features
 all the greats, such as `malloc`, `free`, `calloc`, and `realloc`. While you can use
 it just like you would `malloc`, the definitions of user-facing functions are renamed, 

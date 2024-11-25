@@ -20,20 +20,20 @@ License for more details.
 #include "headers/woralloc_cfg.h"
 
 #ifdef _WORALLOC_WASM
-  #define NULL 0
+#define NULL 0
 
-  extern unsigned char __heap_base;
-  unsigned char *__heap_base_pt = &__heap_base;
+extern unsigned char __heap_base;
+unsigned char *__heap_base_pt = &__heap_base;
 
-  unsigned char *heap_bottom = &__heap_base;
-  unsigned char *heap_last = NULL;
-  unsigned char *heap_unexp = &__heap_base;
+unsigned char *heap_bottom = &__heap_base;
+unsigned char *heap_last = NULL;
+unsigned char *heap_unexp = &__heap_base;
 #else
-  #include <stdio.h>
-  unsigned char fakeheap[10240];
-  unsigned char *heap_bottom = fakeheap;
-  unsigned char *heap_last = NULL;
-  unsigned char *heap_unexp = fakeheap;
+#include <stdio.h>
+unsigned char fakeheap[10240];
+unsigned char *heap_bottom = fakeheap;
+unsigned char *heap_last = NULL;
+unsigned char *heap_unexp = fakeheap;
 #endif
 
 typedef unsigned char byte;
@@ -52,8 +52,8 @@ struct blockheader {
   struct blockheader *next;
 
   byte isfree;
-  int size;
   byte lastop;
+  int size;
 };
 
 struct memzone {
@@ -269,21 +269,21 @@ void wemdump(){
     blocks += 1;
     
     printf("!BLOCK @ %016lx!\nfree: %d\nlast op: %d\nsize: %d\nnext: %016lx\n\n",
-      (unsigned long) bottom,
-      bottom->isfree, bottom->lastop,
-      bottom->size,
-      (unsigned long) bottom->next);
+           (unsigned long) bottom,
+           bottom->isfree, bottom->lastop,
+           bottom->size,
+           (unsigned long) bottom->next);
     if(bottom->next != NULL) {
       bottom = bottom->next;
     } else {
       printf("Total nominal size of alloc'd memory (in bytes): %d\n", talloc);
       printf("Total size between the pointers: %ld\n",
-        (unsigned long) (heap_unexp - heap_bottom));
+             (unsigned long) (heap_unexp - heap_bottom));
       printf("Total size of the block headers: %ld\n",
-        sizeof(struct blockheader) * blocks);
+             sizeof(struct blockheader) * blocks);
       printf("Total real size, minus the block headers: %ld\n\n",
-        (unsigned long) (heap_unexp - heap_bottom)
-        - (sizeof(struct blockheader) * blocks));
+             (unsigned long) (heap_unexp - heap_bottom)
+             - (sizeof(struct blockheader) * blocks));
       break;
     }
   }
